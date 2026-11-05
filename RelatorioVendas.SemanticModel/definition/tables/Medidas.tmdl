@@ -13,6 +13,10 @@ table Medidas
 		formatString: 0
 		lineageTag: 490fc037-d7a3-4352-982d-6b8d7d9bc5ec
 
+	measure 'Faturamento Dobrado' = [Faturamento] * 2
+		formatString: 0
+		lineageTag: f5ffcf57-98bc-490b-b314-c376ca0a2e9a
+
 	column Column
 		formatString: 0
 		lineageTag: b6924f33-89a2-48bd-99ef-20b7b5548c6c
