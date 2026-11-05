@@ -17,6 +17,10 @@ table Medidas
 		formatString: 0
 		lineageTag: f5ffcf57-98bc-490b-b314-c376ca0a2e9a
 
+	measure 'Faturamento Triplo' = [Faturamento] * 3
+		formatString: 0
+		lineageTag: a0db158e-1b2b-4637-aaab-cc0c998bedc0
+
 	column Column
 		formatString: 0
 		lineageTag: b6924f33-89a2-48bd-99ef-20b7b5548c6c
