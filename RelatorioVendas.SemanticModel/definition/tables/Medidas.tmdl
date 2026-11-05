@@ -1,0 +1,32 @@
+table Medidas
+	lineageTag: 1c86f380-9b95-49e8-9c75-9090b5493d2a
+
+	measure Faturamento = SUM(Vendas[Valor_Total])
+		formatString: 0
+		lineageTag: 0a2c63ea-0d2a-4c62-a84b-72937ac2ee54
+
+	measure 'Quantidade Vendida' = SUM(Vendas[Quantidade])
+		formatString: 0
+		lineageTag: 2cbc6498-276d-40a8-9b9d-67989f0e6bfd
+
+	measure 'Total de Pedidos' = DISTINCTCOUNT(Vendas[Pedido])
+		formatString: 0
+		lineageTag: 490fc037-d7a3-4352-982d-6b8d7d9bc5ec
+
+	column Column
+		formatString: 0
+		lineageTag: b6924f33-89a2-48bd-99ef-20b7b5548c6c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 08629af5d0f244f8a778ef5b32f0260a
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

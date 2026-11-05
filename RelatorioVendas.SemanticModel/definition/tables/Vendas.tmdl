@@ -1,0 +1,86 @@
+table Vendas
+	lineageTag: 2c2f2a51-f7e8-4d61-8d8f-3b1eea6bbbaf
+
+	column Data
+		dataType: int64
+		formatString: 0
+		lineageTag: a41e6cf2-d435-4791-bdab-d62ab4b1adb3
+		summarizeBy: sum
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pedido
+		dataType: string
+		lineageTag: 75a853ea-a419-4c7e-97cb-3f09cf483698
+		summarizeBy: none
+		sourceColumn: Pedido
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produto
+		dataType: string
+		lineageTag: c0c6d22a-dfe5-4f09-bc35-c21bfde864b1
+		summarizeBy: none
+		sourceColumn: Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Categoria
+		dataType: string
+		lineageTag: 96516973-0536-49d8-8d74-6039f7773471
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendedor
+		dataType: string
+		lineageTag: c8e83e2c-fda2-4c99-b95f-87ea13807750
+		summarizeBy: none
+		sourceColumn: Vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantidade
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f2da230-20a5-472f-8888-c49530431261
+		summarizeBy: sum
+		sourceColumn: Quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Preco_Unitario
+		dataType: int64
+		formatString: 0
+		lineageTag: 486fc7f8-9b64-4c5b-b0d5-43856098f9ab
+		summarizeBy: sum
+		sourceColumn: Preco_Unitario
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor_Total
+		dataType: int64
+		formatString: 0
+		lineageTag: 3507fef4-b64a-4907-8df7-a88bd0a9c6d4
+		summarizeBy: sum
+		sourceColumn: Valor_Total
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Vendas = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("D:\dados.usuarios\david.feitoza\desktop\Diversos\Power BI\testes\Vendas.xlsx"), null, true),
+				    Vendas_Sheet = Fonte{[Item="Vendas",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Vendas_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Data", Int64.Type}, {"Pedido", type text}, {"Produto", type text}, {"Categoria", type text}, {"Vendedor", type text}, {"Quantidade", Int64.Type}, {"Preco_Unitario", Int64.Type}, {"Valor_Total", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

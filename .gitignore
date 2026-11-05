@@ -1,0 +1,7 @@
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/analysisServicesWorkspace*
+**/.pbi/unappliedChanges.json
+**/.pbi/editorSettings.json
+**/.pbi/tempSaves/
+*.pbix
